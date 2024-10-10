@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
 function SearchInput({ keyword, keywordChange }) {
   return (
     <form className="d-flex">
@@ -17,8 +18,10 @@ function SearchInput({ keyword, keywordChange }) {
     </form>
   );
 }
+
 SearchInput.propTypes = {
   keyword: PropTypes.string.isRequired,
   keywordChange: PropTypes.func.isRequired,
 };
+
 export default SearchInput;

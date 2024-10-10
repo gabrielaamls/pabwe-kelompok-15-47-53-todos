@@ -180,12 +180,15 @@ let todos = [
     updated_at: "2024-03-17T16:00:00.000000Z",
   },
 ];
+
 function getAllTodo() {
   return todos;
 }
+
 function getTodo(id) {
-  return todos.find((todo) => todo.id == id); //iniPerbaikan
+  return todos.find((todo) => todo.id === id);
 }
+
 function addTodo({ title, description }) {
   todos = [
     ...todos,
@@ -200,6 +203,7 @@ function addTodo({ title, description }) {
     },
   ];
 }
+
 function editTodo({ id, title, description, is_finished }) {
   todos = todos.map((todo) => {
     if (todo.id === id) {
@@ -211,7 +215,9 @@ function editTodo({ id, title, description, is_finished }) {
     return todo;
   });
 }
+
 function deleteTodo(id) {
   todos = todos.filter((todo) => todo.id !== id);
 }
+
 export { getAllTodo, getTodo, addTodo, editTodo, deleteTodo };

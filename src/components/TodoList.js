@@ -1,40 +1,25 @@
 import React from "react";
-import TabsItem from "./TabItem";
+import TabsItem from "./TabsItem";
 import PropTypes from "prop-types";
 
 function TodoList({ todos, onDelete, onTodoFinished, keywordSearch }) {
-  // Filter todos yang belum selesai
   let todosNotFinished = todos.filter((todo) => !todo.is_finished);
-  // Filter todos yang sudah selesai
   let todosFinished = todos.filter((todo) => todo.is_finished);
 
-  // Jika ada pencarian berdasarkan keyword
   if (keywordSearch) {
-    // Filter todos yang belum selesai berdasarkan keyword
-    todosNotFinished = todosNotFinished.filter(function (todo) {
-      return todo.title.toLowerCase().includes(keywordSearch.toLowerCase());
-    });
-    // Filter todos yang sudah selesai berdasarkan keyword
-    todosFinished = todosFinished.filter(function (todo) {
-      return todo.title.toLowerCase().includes(keywordSearch.toLowerCase());
-    });
+    todosNotFinished = todosNotFinished.filter((todo) =>
+      todo.title.toLowerCase().includes(keywordSearch.toLowerCase())
+    );
+    todosFinished = todosFinished.filter((todo) =>
+      todo.title.toLowerCase().includes(keywordSearch.toLowerCase())
+    );
   }
 
-  // Sort todos yang belum selesai berdasarkan created_at (descending)
-  todosNotFinished.sort((a, b) => {
-    const dateA = new Date(a.created_at);
-    const dateB = new Date(b.created_at);
-    return dateB - dateA;
-  });
+  todosNotFinished.sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
+  todosFinished.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-  // Sort todos yang sudah selesai berdasarkan updated_at (descending)
-  todosFinished.sort((a, b) => {
-    const dateA = new Date(a.updated_at);
-    const dateB = new Date(b.updated_at);
-    return dateB - dateA;
-  });
-
-  // Judul untuk tab "Todo Telah Selesai" dan "Todo Belum Selesai"
   const titleTodoFinished = `Todo Telah Selesai (${todosFinished.length})`;
   const titleTodoNotFinished = `Todo Belum Selesai (${todosNotFinished.length})`;
 
@@ -71,21 +56,21 @@ function TodoList({ todos, onDelete, onTodoFinished, keywordSearch }) {
         </ul>
         <div className="tab-content" id="myTabContent">
           <TabsItem
-            tabId={"not-finished"}
+            tabId="not-finished"
             title={titleTodoNotFinished}
             isActive={true}
             todos={todosNotFinished}
             onDelete={onDelete}
             onTodoFinished={onTodoFinished}
-          ></TabsItem>
+          />
           <TabsItem
-            tabId={"finished"}
+            tabId="finished"
             title={titleTodoFinished}
             isActive={false}
             todos={todosFinished}
             onDelete={onDelete}
             onTodoFinished={onTodoFinished}
-          ></TabsItem>
+          />
         </div>
       </div>
     </div>

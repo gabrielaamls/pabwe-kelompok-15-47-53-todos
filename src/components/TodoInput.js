@@ -4,33 +4,35 @@ import PropTypes from "prop-types";
 class TodoInput extends React.Component {
   constructor(props) {
     super(props);
-    // inisialisasi state
+
+    // Inisialisasi state
     this.state = {
       title: "",
       description: "",
     };
+
     this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
     this.onDescriptionChangeEventHandler =
       this.onDescriptionChangeEventHandler.bind(this);
     this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
   }
+
   onTitleChangeEventHandler(event) {
     if (event.target.value.length > 50) return;
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        title: event.target.value,
-      };
-    });
+
+    this.setState((prevState) => ({
+      ...prevState,
+      title: event.target.value,
+    }));
   }
+
   onDescriptionChangeEventHandler(event) {
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        description: event.target.value,
-      };
-    });
+    this.setState((prevState) => ({
+      ...prevState,
+      description: event.target.value,
+    }));
   }
+
   onSubmitEventHandler(event) {
     event.preventDefault();
     this.props.onAddTodo(this.state);
@@ -39,6 +41,7 @@ class TodoInput extends React.Component {
       description: "",
     });
   }
+
   render() {
     return (
       <div className="col-lg-12 col-md-12">
@@ -48,7 +51,7 @@ class TodoInput extends React.Component {
             <hr />
             <form id="form" onSubmit={this.onSubmitEventHandler}>
               <div className="form-group mb-3">
-                <label htmlFor="inputTitle" className="formlabel">
+                <label htmlFor="inputTitle" className="form-label">
                   Title
                 </label>
                 <div className="input-group">
@@ -65,7 +68,7 @@ class TodoInput extends React.Component {
                 </div>
               </div>
               <div className="form-group mb-3">
-                <label htmlFor="inputDescription" className="formlabel">
+                <label htmlFor="inputDescription" className="form-label">
                   Description
                 </label>
                 <textarea
@@ -73,7 +76,7 @@ class TodoInput extends React.Component {
                   className="form-control"
                   id="inputDescription"
                   rows="5"
-                  value={this.state.body}
+                  value={this.state.description}
                 ></textarea>
               </div>
               <div className="form-group mb-3 text-end">
@@ -88,7 +91,9 @@ class TodoInput extends React.Component {
     );
   }
 }
+
 TodoInput.propTypes = {
   onAddTodo: PropTypes.func.isRequired,
 };
+
 export default TodoInput;

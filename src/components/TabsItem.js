@@ -1,8 +1,10 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import PropTypes from "prop-types";
+
 function TabsItem({ tabId, title, isActive, todos, onDelete, onTodoFinished }) {
   let itemDisplay;
+
   if (todos.length > 0) {
     itemDisplay = (
       <div className="list-item" id="bookshelf">
@@ -20,6 +22,7 @@ function TabsItem({ tabId, title, isActive, todos, onDelete, onTodoFinished }) {
   } else {
     itemDisplay = <p>Tidak ada catatan</p>;
   }
+
   return (
     <div
       className={`tab-pane fade ${isActive ? "show active" : ""}`}
@@ -33,6 +36,7 @@ function TabsItem({ tabId, title, isActive, todos, onDelete, onTodoFinished }) {
     </div>
   );
 }
+
 TabsItem.propTypes = {
   tabId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -41,4 +45,5 @@ TabsItem.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onTodoFinished: PropTypes.func.isRequired,
 };
+
 export default TabsItem;

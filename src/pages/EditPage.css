@@ -1,0 +1,30 @@
+.edit-container {
+  padding: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.edit-form button {
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .edit-form {
+    max-width: 100%;
+  }
+}
